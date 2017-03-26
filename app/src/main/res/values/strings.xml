@@ -20,8 +20,10 @@
         <item>millimeter</item>
         <item>meter</item>
         <item>kilometer</item>
+        <item>thou</item>
         <item>inch</item>
         <item>feet</item>
+        <item>yard</item>
         <item>mile</item>
     </string-array>
 </resources>
