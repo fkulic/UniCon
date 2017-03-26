@@ -4,7 +4,7 @@ package com.fkulic.unicon;
  * Created by Filip on 26.3.2017..
  */
 
-class Lenght {
+class Length {
     public static final String UNIT_MM = "millimeter";
     public static final String UNIT_M = "meter";
     public static final String UNIT_KM = "kilometer";
@@ -17,7 +17,7 @@ class Lenght {
     private String inputUnit;
     private double valueInMeters;
 
-    public Lenght(double inputValue, String inputUnit) {
+    public Length(double inputValue, String inputUnit) {
         this.inputUnit = inputUnit;
         toMeters(inputValue);
     }
