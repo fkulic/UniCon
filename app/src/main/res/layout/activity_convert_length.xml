@@ -1,58 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/tvConvertLengthText"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/sLengthInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/controlBackground"
-        android:entries="@array/Length"
-        android:padding="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/tvConvertLengthText"
+            android:textSize="18sp"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/controlBackground"
-        android:hint="@string/etHint"
-        android:padding="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="@string/tvConvertFromText"/>
 
-    <Spinner
-        android:id="@+id/sLengthOutput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/controlBackground"
-        android:entries="@array/Length"
-        android:padding="8dp"/>
+        <Spinner
+            android:id="@+id/sLengthInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/controlBackground"
+            android:entries="@array/Length"
+            android:padding="8dp"/>
 
-    <Button
-        android:id="@+id/bConvertTemp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/bConvertText"
-        android:textColor="@color/controlBackground"/>
+        <EditText
+            android:id="@+id/etLengthValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/controlBackground"
+            android:hint="@string/etHint"
+            android:inputType="numberDecimal"
+            android:padding="8dp"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="@string/tvConvertToText"/>
+
+        <Spinner
+            android:id="@+id/sLengthOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/controlBackground"
+            android:entries="@array/Length"
+            android:padding="8dp"/>
+
+        <Button
+            android:id="@+id/bConvertLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/bConvertText"
+            android:textColor="@color/controlBackground"/>
+    </LinearLayout>
+</ScrollView>
