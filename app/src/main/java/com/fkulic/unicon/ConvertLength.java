@@ -9,6 +9,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+import static com.fkulic.unicon.Length.UNIT_FEET;
+import static com.fkulic.unicon.Length.UNIT_INCH;
+import static com.fkulic.unicon.Length.UNIT_KM;
+import static com.fkulic.unicon.Length.UNIT_M;
+import static com.fkulic.unicon.Length.UNIT_MILES;
+import static com.fkulic.unicon.Length.UNIT_MM;
+import static com.fkulic.unicon.Length.UNIT_THOU;
+import static com.fkulic.unicon.Length.UNIT_YARD;
 import static com.fkulic.unicon.ResultActivity.INPUT_UNIT;
 import static com.fkulic.unicon.ResultActivity.INPUT_VALUE;
 import static com.fkulic.unicon.ResultActivity.OUTPUT_UNIT;
@@ -16,17 +25,13 @@ import static com.fkulic.unicon.ResultActivity.OUTPUT_VALUE;
 
 public class ConvertLength extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UNIT_MM = "millimeter";
-    public static final String UNIT_M = "meter";
-    public static final String UNIT_KM = "kilometer";
-    public static final String UNIT_INCH = "inch";
-    public static final String UNIT_FEET = "feet";
-    public static final String UNIT_MILES = "mile";
 
     Spinner sLengthInput;
     Spinner sLengthOutput;
     EditText etLength;
     Button bConvertLength;
+
+    private Length mLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +55,13 @@ public class ConvertLength extends AppCompatActivity implements View.OnClickList
         String outputUnit = sLengthOutput.getSelectedItem().toString();
         String lengthValue = etLength.getText().toString();
         double inputLength;
+        double outputLength;
 
         try {
             inputLength = Double.parseDouble(lengthValue);
-            double outputLength = convertLength(inputUnit, outputUnit, inputLength);
+            this.mLength = new Length(inputLength, inputUnit);
+            outputLength = outputUnit.equals(inputUnit) ? inputLength : convertLength(outputUnit);
+
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
             intent.putExtra(INPUT_UNIT, inputUnit);
             intent.putExtra(OUTPUT_UNIT, outputUnit);
@@ -66,171 +74,26 @@ public class ConvertLength extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private double convertLength(String inputUnit, String outputUnit, double inputLength) {
-        double outputLength = 0;
-        switch (inputUnit) {
+
+    private double convertLength(String outputUnit) {
+        switch (outputUnit) {
             case UNIT_MM:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        return inputLength;
-
-                    case UNIT_M:
-                        outputLength = inputLength / 1000;
-                        break;
-
-                    case UNIT_KM:
-                        outputLength = inputLength / 1000000;
-                        break;
-
-                    case UNIT_INCH:
-                        outputLength = inputLength * 0.03937;
-                        break;
-
-                    case UNIT_FEET:
-                        outputLength = inputLength * 0.0032808399;
-                        break;
-
-                    case UNIT_MILES:
-                        outputLength = inputLength * 0.00000062137;
-                        break;
-                }
-                break;
-
+                return this.mLength.toMillimeters();
             case UNIT_M:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        outputLength = inputLength * 1000;
-                        break;
-
-                    case UNIT_M:
-                        return inputLength;
-
-                    case UNIT_KM:
-                        outputLength = inputLength / 1000;
-                        break;
-
-                    case UNIT_INCH:
-                        outputLength = inputLength * 39.37;
-                        break;
-
-                    case UNIT_FEET:
-                        outputLength = inputLength * 3.2808399;
-                        break;
-
-                    case UNIT_MILES:
-                        outputLength = inputLength * 0.00062137;
-                        break;
-                }
-                break;
-
+                return this.mLength.getValueInMeters();
             case UNIT_KM:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        outputLength = inputLength * 1000000;
-                        break;
-
-                    case UNIT_M:
-                        outputLength = inputLength * 1000;
-                        break;
-
-                    case UNIT_KM:
-                        return inputLength;
-
-                    case UNIT_INCH:
-                        outputLength = inputLength * 39370;
-                        break;
-
-                    case UNIT_FEET:
-                        outputLength = inputLength * 3280.8399;
-                        break;
-
-                    case UNIT_MILES:
-                        outputLength = inputLength * 0.62137;
-                        break;
-                }
-                break;
-
+                return this.mLength.toKilometers();
+            case UNIT_THOU:
+                return this.mLength.toThou();
             case UNIT_INCH:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        outputLength = inputLength * 25.4;
-                        break;
-
-                    case UNIT_M:
-                        outputLength = inputLength * 0.0254;
-                        break;
-
-                    case UNIT_KM:
-                        outputLength = inputLength * 0.0000254;
-                        break;
-
-                    case UNIT_INCH:
-                        return inputLength;
-
-                    case UNIT_FEET:
-                        outputLength = inputLength / 12;
-                        break;
-
-                    case UNIT_MILES:
-                        outputLength = inputLength / 63360;
-                        break;
-                }
-                break;
-
+                return this.mLength.toInch();
             case UNIT_FEET:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        outputLength = inputLength * 304.8;
-                        break;
-
-                    case UNIT_M:
-                        outputLength = inputLength * 0.3048;
-                        break;
-
-                    case UNIT_KM:
-                        outputLength = inputLength * 0.0003048;
-                        break;
-
-                    case UNIT_INCH:
-                        outputLength = inputLength * 12;
-                        break;
-
-                    case UNIT_FEET:
-                        return inputLength;
-
-                    case UNIT_MILES:
-                        outputLength = inputLength / 5280;
-                        break;
-                }
-                break;
-
+                return this.mLength.toFeet();
+            case UNIT_YARD:
+                return this.mLength.toYard();
             case UNIT_MILES:
-                switch (outputUnit) {
-                    case UNIT_MM:
-                        outputLength = inputLength * 1609344;
-                        break;
-
-                    case UNIT_M:
-                        outputLength = inputLength * 1609.344;
-                        break;
-
-                    case UNIT_KM:
-                        outputLength = inputLength * 1.609344;
-                        break;
-
-                    case UNIT_INCH:
-                        outputLength = inputLength * 63360;
-                        break;
-
-                    case UNIT_FEET:
-                        outputLength = inputLength * 5280;
-                        break;
-
-                    case UNIT_MILES:
-                        return inputLength;
-                }
-                break;
+                return this.mLength.toMiles();
         }
-        return outputLength;
+        return 0;
     }
 }
