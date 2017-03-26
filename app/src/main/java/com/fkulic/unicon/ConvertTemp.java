@@ -13,19 +13,24 @@ import static com.fkulic.unicon.ResultActivity.INPUT_UNIT;
 import static com.fkulic.unicon.ResultActivity.INPUT_VALUE;
 import static com.fkulic.unicon.ResultActivity.OUTPUT_UNIT;
 import static com.fkulic.unicon.ResultActivity.OUTPUT_VALUE;
+import static com.fkulic.unicon.Temperature.UNIT_C;
+import static com.fkulic.unicon.Temperature.UNIT_DE;
+import static com.fkulic.unicon.Temperature.UNIT_F;
+import static com.fkulic.unicon.Temperature.UNIT_K;
+import static com.fkulic.unicon.Temperature.UNIT_N;
+import static com.fkulic.unicon.Temperature.UNIT_R;
+import static com.fkulic.unicon.Temperature.UNIT_RE;
+import static com.fkulic.unicon.Temperature.UNIT_RO;
 
 public class ConvertTemp extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UNIT_C = "°C";
-    public static final String UNIT_F = "°F";
-    public static final String UNIT_K = "K";
 
     Spinner sTempInput;
     Spinner sTempOutput;
     EditText etTemp;
     Button bConvertTemp;
 
-
+    private Temperature mTemperature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +54,19 @@ public class ConvertTemp extends AppCompatActivity implements View.OnClickListen
         String inputUnit = sTempInput.getSelectedItem().toString();
         String outputUnit = sTempOutput.getSelectedItem().toString();
         String tempValue = etTemp.getText().toString();
-        double inputTemp;
+        double inputValue;
+        double outputValue;
 
         try {
-            inputTemp = Double.parseDouble(tempValue);
-            double outputTemp = convertTemp(inputUnit, outputUnit, inputTemp);
+            inputValue = Double.parseDouble(tempValue);
+            this.mTemperature = new Temperature(inputValue, inputUnit);
+            outputValue = outputUnit.equals(inputUnit) ? inputValue : convertTemp(outputUnit);
+
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
             intent.putExtra(INPUT_UNIT, inputUnit);
             intent.putExtra(OUTPUT_UNIT, outputUnit);
-            intent.putExtra(INPUT_VALUE, inputTemp);
-            intent.putExtra(OUTPUT_VALUE,outputTemp);
+            intent.putExtra(INPUT_VALUE, inputValue);
+            intent.putExtra(OUTPUT_VALUE, outputValue);
             this.startActivity(intent);
 
         } catch (NumberFormatException e) {
@@ -67,41 +75,27 @@ public class ConvertTemp extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    private double convertTemp(String inputUnit, String outputUnit, double inputTemp) {
-        double outputTemp = 0;
-        switch (inputUnit) {
+    private double convertTemp(String outputUnit) {
+        switch (outputUnit) {
+
             case UNIT_C:
-                if(outputUnit.equals(UNIT_C)) {
-                    return inputTemp;
-                } else if(outputUnit.equals(UNIT_F)) {
-                    outputTemp = 1.8 * inputTemp + 32;
-                } else {
-                    outputTemp = inputTemp + 273.15;
-                }
-                break;
-
+                return this.mTemperature.getValueInCelsius();
             case UNIT_F:
-                if(outputUnit.equals(UNIT_F)) {
-                    return inputTemp;
-                } else if(outputUnit.equals(UNIT_C)) {
-                    outputTemp = (inputTemp - 32) / 1.8;
-                } else {
-                    outputTemp = (inputTemp + 459.67) * (5/9);
-                }
-                break;
+                return this.mTemperature.toFahrenheit();
             case UNIT_K:
-                if(outputUnit.equals(UNIT_K)) {
-                    return inputTemp;
-                } else if(outputUnit.equals(UNIT_C)) {
-                    outputTemp = inputTemp - 273.15;
-                } else {
-                    outputTemp = inputTemp * (9/5) - 459.67;
-                }
-                break;
-
+                return this.mTemperature.toKelvin();
+            case UNIT_R:
+                return this.mTemperature.toRankine();
+            case UNIT_DE:
+                return this.mTemperature.toDelisle();
+            case UNIT_N:
+                return this.mTemperature.toNewton();
+            case UNIT_RE:
+                return this.mTemperature.toReaumur();
+            case UNIT_RO:
+                return this.mTemperature.toRomer();
         }
-        return outputTemp;
+        return 0;
     }
-
 
 }

@@ -14,6 +14,11 @@
         <item>°C</item>
         <item>°F</item>
         <item>K</item>
+        <item>°R</item>
+        <item>°De</item>
+        <item>°N</item>
+        <item>°Ré</item>
+        <item>°Rø</item>
     </string-array>
 
     <string-array name="Length">
