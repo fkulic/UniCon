@@ -10,6 +10,7 @@
     <string name="tvConvertFromText">Convert from:</string>
     <string name="tvConvertToText">Convert to:</string>
     <string name="tvConvertMassText">Mass conversion</string>
+    <string name="tvConvertVolumeText">Volume converter</string>
 
     <string-array name="Temp">
         <item>°C</item>
@@ -43,5 +44,22 @@
         <item>pound</item>
         <item>short ton</item>
         <item>long ton</item>
+    </string-array>
+
+    <string-array name="Volume">
+        <item>cubic millimeter</item>
+        <item>cubic centimeter</item>
+        <item>cubic decimeter</item>
+        <item>cubic meter</item>
+        <item>fluid ounce</item>
+        <item>gill</item>
+        <item>pint</item>
+        <item>quart</item>
+        <item>gallon</item>
+        <item>milliliter</item>
+        <item>centiliter</item>
+        <item>deciliter</item>
+        <item>liter</item>
+
     </string-array>
 </resources>

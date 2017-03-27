@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ivConvertVolume:
-
+                intent = new Intent(getApplicationContext(), ConvertVolume.class);
                 break;
         }
         if (intent != null) {
