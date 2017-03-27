@@ -19,7 +19,7 @@ There are 6 activities in this android project. MainActivity which has four Imag
 
 ## Screenshots
 
-![MainActivity](./screenshots/collage.jpg)
+![MainActivity](screenshots/collage.jpg)
 
 ## Resources
 
