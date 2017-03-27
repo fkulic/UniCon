@@ -14,46 +14,36 @@ class Temperature {
     public static final String UNIT_RE = "°Ré";
     public static final String UNIT_RO = "°Rø";
 
-    private String inputUnit;
     private double valueInCelsius;
 
     public Temperature(Double inputValue, String inputUnit) {
-        this.inputUnit = inputUnit;
-        toCelsius(inputValue);
+        this.valueInCelsius = toCelsius(inputValue, inputUnit);
     }
 
     public double getValueInCelsius() {
         return valueInCelsius;
     }
 
-    private void toCelsius(Double inputValue) {
-        switch (this.inputUnit) {
+    private double toCelsius(Double inputValue, String inputUnit) {
+        switch (inputUnit) {
             case UNIT_C:
-                this.valueInCelsius = inputValue;
-                break;
+                return inputValue;
             case UNIT_F:
-                this.valueInCelsius = (inputValue - 32) * 5 / 9;
-                break;
+                return (inputValue - 32) * 5 / 9;
             case UNIT_K:
-                this.valueInCelsius = inputValue - 273.15;
-                break;
+                return inputValue - 273.15;
             case UNIT_R:
-                this.valueInCelsius = (inputValue - 491.67) * 5 / 9;
-                break;
+                return (inputValue - 491.67) * 5 / 9;
             case UNIT_DE:
-                this.valueInCelsius = 100 - inputValue * 2 / 3;
-                break;
+                return 100 - inputValue * 2 / 3;
             case UNIT_N:
-                this.valueInCelsius = inputValue * 100 / 33;
-                break;
+                return inputValue * 100 / 33;
             case UNIT_RE:
-                this.valueInCelsius = inputValue * 5 / 4;
-                break;
+                return inputValue * 5 / 4;
             case UNIT_RO:
-                this.valueInCelsius = (inputValue - 7.5) * 40 / 21;
-                break;
-
+                return (inputValue - 7.5) * 40 / 21;
         }
+        return 0;
     }
 
     public double toFahrenheit() {

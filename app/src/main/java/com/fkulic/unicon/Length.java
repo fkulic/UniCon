@@ -14,56 +14,36 @@ class Length {
     public static final String UNIT_YARD = "yard";
     public static final String UNIT_MILES = "mile";
 
-    private String inputUnit;
     private double valueInMeters;
 
     public Length(double inputValue, String inputUnit) {
-        this.inputUnit = inputUnit;
-        toMeters(inputValue);
-    }
-
-    public String getInputUnit() {
-        return inputUnit;
+        this.valueInMeters = toMeters(inputValue, inputUnit);
     }
 
     public double getValueInMeters() {
         return valueInMeters;
     }
 
-    private void toMeters(double inputValue) {
+    private double toMeters(double inputValue, String inputUnit) {
         switch (inputUnit) {
             case UNIT_MM:
-                this.valueInMeters = inputValue / 1000;
-                break;
-
+                return inputValue / 1000;
             case UNIT_M:
-                this.valueInMeters = inputValue;
-                break;
-
+                return inputValue;
             case UNIT_KM:
-                this.valueInMeters = inputValue * 1000;
-                break;
-
+                return inputValue * 1000;
             case UNIT_THOU:
-                this.valueInMeters = inputValue * 0.0000254;
-                break;
-
+                return inputValue * 0.0000254;
             case UNIT_INCH:
-                this.valueInMeters = inputValue * 0.0254;
-                break;
-
+                return inputValue * 0.0254;
             case UNIT_FEET:
-                this.valueInMeters = inputValue * 0.3048;
-                break;
-
+                return inputValue * 0.3048;
             case UNIT_YARD:
-                this.valueInMeters = inputValue * 0.9144;
-                break;
-
+                return inputValue * 0.9144;
             case UNIT_MILES:
-                this.valueInMeters = inputValue * 1609.344;
-                break;
+                return inputValue * 1609.344;
         }
+        return 0;
     }
 
     public double toMillimeters() {
