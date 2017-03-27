@@ -45,7 +45,7 @@
             android:layout_marginRight="16dp"
             android:background="@color/controlBackground"
             android:hint="@string/etHint"
-            android:inputType="numberDecimal"
+            android:inputType="numberDecimal|numberSigned"
             android:padding="8dp"/>
 
         <TextView
