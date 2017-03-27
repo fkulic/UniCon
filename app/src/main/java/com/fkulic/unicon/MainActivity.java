@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ivConvertWeight:
-
+                intent = new Intent(getApplicationContext(), ConvertMass.class);
                 break;
 
             case R.id.ivConvertVolume:

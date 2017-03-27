@@ -9,6 +9,7 @@
     <string name="equalsSign">=</string>
     <string name="tvConvertFromText">Convert from:</string>
     <string name="tvConvertToText">Convert to:</string>
+    <string name="tvConvertMassText">Mass conversion</string>
 
     <string-array name="Temp">
         <item>°C</item>
@@ -30,5 +31,17 @@
         <item>feet</item>
         <item>yard</item>
         <item>mile</item>
+    </string-array>
+
+    <string-array name="Mass">
+        <item>milligram</item>
+        <item>gram</item>
+        <item>kilogram</item>
+        <item>tonne</item>
+        <item>grain</item>
+        <item>ounce</item>
+        <item>pound</item>
+        <item>short ton</item>
+        <item>long ton</item>
     </string-array>
 </resources>

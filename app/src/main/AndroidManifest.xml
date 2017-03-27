@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ResultActivity">
         </activity>
+        <activity android:name=".ConvertMass">
+        </activity>
     </application>
 
 </manifest>
