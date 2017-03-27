@@ -1,11 +1,9 @@
 UniCon - Unit converter
 =========================
 
-Faculty of Electrical Engineering, Computer Science and Information Technology Osijek
-
-Mobile platform application development
-
-Second Homework
+Faculty of Electrical Engineering, Computer Science and Information Technology Osijek  
+Mobile platform application development  
+Second Homework  
 
 ## Requirements
 
@@ -21,10 +19,10 @@ There are 6 activities in this android project. MainActivity which has four Imag
 
 ## Resources
 
-*[Spinner documentation](https://developer.android.com/reference/android/widget/Spinner.html#attr_android:spinnerMode)
-*[Imperial units](https://en.wikipedia.org/wiki/Imperial_units)
-*[Metric Conversions](http://www.metric-conversions.org/)
-*[README editing](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Spinner documentation](https://developer.android.com/reference/android/widget/Spinner.html#attr_android:spinnerMode)
+* [Imperial units](https://en.wikipedia.org/wiki/Imperial_units)
+* [Metric Conversions](http://www.metric-conversions.org/)
+* [README editing](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
 
