@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/tvConvertLengthText"
             android:textSize="18sp"/>
 
         <TextView
@@ -27,18 +26,17 @@
             android:text="@string/tvConvertFromText"/>
 
         <Spinner
-            android:id="@+id/sLengthInput"
+            android:id="@+id/sInputUnit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="@color/controlBackground"
-            android:entries="@array/Length"
             android:padding="8dp"/>
 
         <EditText
-            android:id="@+id/etLengthValue"
+            android:id="@+id/etInputValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -56,18 +54,17 @@
             android:text="@string/tvConvertToText"/>
 
         <Spinner
-            android:id="@+id/sLengthOutput"
+            android:id="@+id/sOutputUnit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="@color/controlBackground"
-            android:entries="@array/Length"
             android:padding="8dp"/>
 
         <Button
-            android:id="@+id/bConvertLength"
+            android:id="@+id/bConvert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"

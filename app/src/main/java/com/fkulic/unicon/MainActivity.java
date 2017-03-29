@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import static com.fkulic.unicon.ConvertActivity.CONVERT_LENGTH;
+import static com.fkulic.unicon.ConvertActivity.CONVERT_MASS;
+import static com.fkulic.unicon.ConvertActivity.CONVERT_TEMP;
+import static com.fkulic.unicon.ConvertActivity.CONVERT_VOLUME;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String NEXT_ACTIVITY = "next_activity";
 
     ImageView ivConvertTemp;
     ImageView ivConvertLength;
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setUpUI() {
         ivConvertTemp = (ImageView) findViewById(R.id.ivConvertTemp);
         ivConvertLength = (ImageView) findViewById(R.id.ivConvertLength);
-        ivConvertWeight = (ImageView) findViewById(R.id.ivConvertWeight);
+        ivConvertWeight = (ImageView) findViewById(R.id.ivConvertMass);
         ivConvertVolume = (ImageView) findViewById(R.id.ivConvertVolume);
 
         ivConvertTemp.setOnClickListener(this);
@@ -35,28 +41,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = null;
+        Intent intent = new Intent(getApplicationContext(), ConvertActivity.class);
         switch (v.getId()) {
             case R.id.ivConvertTemp:
-                intent = new Intent(getApplicationContext(), ConvertTemp.class);
+                intent.putExtra(NEXT_ACTIVITY, CONVERT_TEMP);
                 break;
-
             case R.id.ivConvertLength:
-                intent =  new Intent(getApplicationContext(), ConvertLength.class);
+                intent.putExtra(NEXT_ACTIVITY, CONVERT_LENGTH);
                 break;
-
-            case R.id.ivConvertWeight:
-                intent = new Intent(getApplicationContext(), ConvertMass.class);
+            case R.id.ivConvertMass:
+                intent.putExtra(NEXT_ACTIVITY, CONVERT_MASS);
                 break;
-
             case R.id.ivConvertVolume:
-                intent = new Intent(getApplicationContext(), ConvertVolume.class);
-                break;
-        }
-        if (intent != null) {
-            this.startActivity(intent);
-        } else {
-            Toast.makeText(getApplicationContext(), "Something went horribly wrong!", Toast.LENGTH_LONG).show();
-        }
+                intent.putExtra(NEXT_ACTIVITY, CONVERT_VOLUME);
+                break;        }
+        this.startActivity(intent);
     }
 }

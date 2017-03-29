@@ -1,10 +1,12 @@
 package com.fkulic.unicon;
 
+import java.util.ArrayList;
+
 /**
  * Created by Filip on 27.3.2017..
  */
 
-class Mass {
+class Mass extends Unit {
     public static final String UNIT_MG = "milligram";
     public static final String UNIT_G = "gram";
     public static final String UNIT_KG = "kilogram";
@@ -17,15 +19,15 @@ class Mass {
 
     private double valueInKilograms;
 
+    public Mass() {
+    }
+
     public Mass(double inputValue, String inputUnit) {
-        this.valueInKilograms = toKg(inputValue, inputUnit);
+        this.valueInKilograms = toBasicUnit(inputValue, inputUnit);
     }
 
-    public double getValueInKilograms() {
-        return valueInKilograms;
-    }
-
-    private double toKg(double inputValue, String inputUnit) {
+    @Override
+    double toBasicUnit(double inputValue, String inputUnit) {
         switch (inputUnit) {
             case UNIT_MG:
                 return inputValue * 0.000001;
@@ -49,35 +51,43 @@ class Mass {
         return 0;
     }
 
-    public double toMilligrams() {
-        return this.valueInKilograms * 1000000;
+    @Override
+    public double getValueIn(String outputUnit) {
+        switch (outputUnit) {
+            case UNIT_MG:
+                return this.valueInKilograms * 1000000;
+            case UNIT_G:
+                return this.valueInKilograms * 1000;
+            case UNIT_KG:
+                return this.valueInKilograms;
+            case UNIT_T:
+                return this.valueInKilograms / 1000;
+            case UNIT_GRAIN:
+                return this.valueInKilograms / 0.00006479891;
+            case UNIT_OUNCE:
+                return this.valueInKilograms / 0.0283495231;
+            case UNIT_POUND:
+                return this.valueInKilograms / 0.45359237;
+            case UNIT_STON:
+                return this.valueInKilograms / 907.18474;
+            case UNIT_LTON:
+                return this.valueInKilograms / 1016.04691;
+        }
+        return 0;
     }
 
-    public double toGrams() {
-        return this.valueInKilograms * 1000;
-    }
-
-    public double toTonnes() {
-        return this.valueInKilograms / 1000;
-    }
-
-    public double toGrains() {
-        return this.valueInKilograms / 0.00006479891;
-    }
-
-    public double toOunces() {
-        return this.valueInKilograms / 0.0283495231;
-    }
-
-    public double toPounds() {
-        return this.valueInKilograms / 0.45359237;
-    }
-
-    public double toShortTons() {
-        return this.valueInKilograms / 907.18474;
-    }
-
-    public double toLongTons() {
-        return this.valueInKilograms / 1016.04691;
+    @Override
+    public ArrayList<String> getUnits() {
+        ArrayList<String> units = new ArrayList<>();
+        units.add(UNIT_MG);
+        units.add(UNIT_G);
+        units.add(UNIT_KG);
+        units.add(UNIT_T);
+        units.add(UNIT_GRAIN);
+        units.add(UNIT_OUNCE);
+        units.add(UNIT_POUND);
+        units.add(UNIT_STON);
+        units.add(UNIT_LTON);
+        return units;
     }
 }
