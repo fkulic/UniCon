@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ConvertActivity extends AppCompatActivity implements View.OnClickLi
     public static final String CONVERT_MASS = "convert_mass";
     public static final String CONVERT_VOLUME = "convert_volume";
 
+    TextView tvConvertTitle;
     Spinner sInputUnit;
     EditText etInputValue;
     Spinner sOutputUnit;
@@ -53,6 +55,7 @@ public class ConvertActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void setUpUI() {
+        tvConvertTitle = (TextView) findViewById(R.id.tvConvertTitle);
         sInputUnit = (Spinner) findViewById(R.id.sInputUnit);
         etInputValue = (EditText) findViewById(R.id.etInputValue);
         sOutputUnit = (Spinner) findViewById(R.id.sOutputUnit);
@@ -63,18 +66,22 @@ public class ConvertActivity extends AppCompatActivity implements View.OnClickLi
             case CONVERT_TEMP:
                 mUnit = new Temperature();
                 spinnerArray = mUnit.getUnits();
+                tvConvertTitle.setText(R.string.tvConvertTempText);
                 break;
             case CONVERT_LENGTH:
                 mUnit = new Length();
                 spinnerArray = mUnit.getUnits();
+                tvConvertTitle.setText(R.string.tvConvertLengthText);
                 break;
             case CONVERT_MASS:
                 mUnit = new Mass();
                 spinnerArray = mUnit.getUnits();
+                tvConvertTitle.setText(R.string.tvConvertMassText);
                 break;
             case CONVERT_VOLUME:
                 mUnit = new Volume();
                 spinnerArray = mUnit.getUnits();
+                tvConvertTitle.setText(R.string.tvConvertVolumeText);
                 break;
         }
         ArrayAdapter<String> spinnerArayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
