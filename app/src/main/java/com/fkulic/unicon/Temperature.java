@@ -1,10 +1,12 @@
 package com.fkulic.unicon;
 
+import java.util.ArrayList;
+
 /**
  * Created by Filip on 26.3.2017..
  */
 
-class Temperature {
+class Temperature extends Unit {
     public static final String UNIT_C = "°C";
     public static final String UNIT_F = "°F";
     public static final String UNIT_K = "K";
@@ -16,15 +18,15 @@ class Temperature {
 
     private double valueInCelsius;
 
-    public Temperature(Double inputValue, String inputUnit) {
-        this.valueInCelsius = toCelsius(inputValue, inputUnit);
+    public Temperature() {
     }
 
-    public double getValueInCelsius() {
-        return valueInCelsius;
+    public Temperature(double inputValue, String inputUnit) {
+        this.valueInCelsius = toBasicUnit(inputValue, inputUnit);
     }
 
-    private double toCelsius(Double inputValue, String inputUnit) {
+    @Override
+    double toBasicUnit(double inputValue, String inputUnit) {
         switch (inputUnit) {
             case UNIT_C:
                 return inputValue;
@@ -46,31 +48,40 @@ class Temperature {
         return 0;
     }
 
-    public double toFahrenheit() {
-        return this.valueInCelsius * 9 / 5 + 32;
+    @Override
+    public double getValueIn(String outputUnit) {
+        switch (outputUnit) {
+            case UNIT_C:
+                return  this.valueInCelsius;
+            case UNIT_F:
+                return this.valueInCelsius * 9 / 5 + 32;
+            case UNIT_K:
+                return this.valueInCelsius + 273.15;
+            case UNIT_R:
+                return (this.valueInCelsius + 273.15) * 9 / 5;
+            case UNIT_DE:
+                return (100 - this.valueInCelsius) * 3 / 2;
+            case UNIT_N:
+                return this.valueInCelsius * 33 / 100;
+            case UNIT_RE:
+                return this.valueInCelsius * 4 / 5;
+            case UNIT_RO:
+                return this.valueInCelsius * 21 / 40 + 7.5;
+        }
+        return 0;
     }
 
-    public double toKelvin() {
-        return this.valueInCelsius + 273.15;
-    }
-
-    public double toRankine() {
-        return (this.valueInCelsius + 273.15) * 9 / 5;
-    }
-
-    public double toDelisle() {
-        return (100 - this.valueInCelsius) * 3 / 2;
-    }
-
-    public double toNewton() {
-        return this.valueInCelsius * 33 / 100;
-    }
-
-    public double toReaumur() {
-        return this.valueInCelsius * 4 / 5;
-    }
-
-    public double toRomer() {
-        return this.valueInCelsius * 21 / 40 + 7.5;
+    @Override
+    public ArrayList<String> getUnits() {
+        ArrayList<String> units = new ArrayList<>();
+        units.add(UNIT_C);
+        units.add(UNIT_F);
+        units.add(UNIT_K);
+        units.add(UNIT_R);
+        units.add(UNIT_DE);
+        units.add(UNIT_N);
+        units.add(UNIT_RE);
+        units.add(UNIT_RO);
+        return units;
     }
 }

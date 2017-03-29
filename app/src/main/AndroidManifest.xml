@@ -16,15 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ConvertTemp">
-        </activity>
         <activity android:name=".ConvertLength">
         </activity>
         <activity android:name=".ResultActivity">
         </activity>
-        <activity android:name=".ConvertMass">
-        </activity>
-        <activity android:name=".ConvertVolume">
+        <activity android:name=".ConvertActivity">
         </activity>
     </application>
 
