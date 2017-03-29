@@ -15,7 +15,7 @@ Second Homework
 
 ## Description
 
-There are 6 activities in this android project. MainActivity which has four ImageViews used as buttons, four activites for conversion (Temperature, Length, Mass and Volume) and ResultActivity which shows the result of conversion. Activities are connected using explicit intents. Clicking on one of the four images on MainActivity will take you to one of four conversion Activities. By typing in value, selecting input and output unit and finnaly clicking on *convert* button ResultActivity will be launched. ResultActivity shows both input and output values and units.
+There are 3 activities in this android project. MainActivity which has four ImageViews used as buttons, ConvertActivity which is used to get input from the user and ResultActivity which shows the result of conversion. Activities are connected using explicit intents. Clicking on one of the four images on MainActivity will take user to ConvertActivity. By typing in value, selecting input and output unit and finnaly clicking on *convert* button ResultActivity will be launched. ResultActivity shows both input and output values and units.
 
 ## Screenshots
 
